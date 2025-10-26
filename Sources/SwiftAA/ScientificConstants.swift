@@ -156,7 +156,7 @@ public enum CelestialBodyTransitError: Error {
 
 
 /// KPCAAPlanet is an enum for all historical 9 planets, that is, including Pluto.
-extension KPCAAPlanet: CustomStringConvertible {
+extension KPCAAPlanet: @retroactive CustomStringConvertible {
     
     /// Return the KPCAAPlanet enum value from a planet name string.
     ///
