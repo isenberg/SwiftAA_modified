@@ -2,8 +2,6 @@
 <b>SwiftAA</b> &bull;
 <a href="https://github.com/onekiloparsec/aa-js">aa-js</a> &bull;
 <a href="https://github.com/onekiloparsec/QLFits">QLFits</a> &bull;
-<a href="https://github.com/onekiloparsec/FITSImporter">FITSImporter</a> &bull; 
-<a href="https://github.com/onekiloparsec/ObjCFITSIO">ObjCFITSIO</a> 
 </p>
 
 SwiftAA
@@ -16,7 +14,6 @@ SwiftAA
 ![](https://img.shields.io/badge/licence-MIT-blue.svg)
 [![Travis](https://img.shields.io/travis/onekiloparsec/SwiftAA.svg)](https://travis-ci.org/onekiloparsec/SwiftAA/)
 [![Codecov](https://img.shields.io/codecov/c/github/onekiloparsec/SwiftAA.svg)](https://codecov.io/gh/onekiloparsec/SwiftAA)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/onekiloparsec/SwiftAA)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fonekiloparsec%2FSwiftAA.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fonekiloparsec%2FSwiftAA?ref=badge_shield)
 ![](https://img.shields.io/cocoapods/v/SwiftAA.svg)
 
@@ -55,7 +52,7 @@ The documentation generated from the code itself is available at [http://onekilo
 Installation
 ============
 
-Using the [Swift Package Manager](https://swift.org/package-manager/): either through Xcode > File > Swift Packages > Add Package Dependency... and enter this repo URL (including the `.git` extension), , then choose `SwiftAA` target. Or add the line  `.package(url: "https://github.com/onekiloparsec/SwiftAA.git", from: "3.0.0")` in the `dependencies` section of your `Package.swift` file.
+Using the [Swift Package Manager](https://swift.org/package-manager/): either through Xcode > File > Swift Packages > Add Package Dependency... and enter this repo URL (including the `.git` extension), , then choose `SwiftAA` target. Or add the line  `.package(url: "https://github.com/onekiloparsec/SwiftAA.git", from: "3.0.1")` in the `dependencies` section of your `Package.swift` file.
 
 ~~Using [Carthage](https://github.com/Carthage/Carthage): add `github "onekiloparsec/SwiftAA"` to your `Cartfile`, then run `carthage update`, and finally add the newly built `SwiftAA-macOS.framework` or `SwiftAA-iOS.framework` into your project (in `embedded binaries`).~~
 
