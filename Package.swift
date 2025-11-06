@@ -33,8 +33,7 @@ let package = Package(
             ],
             publicHeadersPath: ".",
             cxxSettings: [
-                .headerSearchPath("."),
-                .unsafeFlags(["-std=c++17"])
+                .headerSearchPath(".")
             ]
         ),
 
@@ -43,8 +42,7 @@ let package = Package(
             name: "AABridge",
             dependencies: ["AAplus"],
             path: "Sources/AABridge",
-            publicHeadersPath: "include",
-            cxxSettings: [.unsafeFlags(["-std=c++17"])]
+            publicHeadersPath: "include"
         ),
         .testTarget(
             name: "AABridgeTests",
