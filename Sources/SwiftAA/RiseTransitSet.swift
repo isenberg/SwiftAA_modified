@@ -129,7 +129,8 @@ public struct RiseTransitSetTimes {
     ///   - celestialBody: The celestial body under study.
     ///   - geographicCoordinates: The geographic coordinates of the observer.
     ///   - riseSetAltitude: The altitude considered for rise and set times.
-    public init(celestialBody: CelestialBody, geographicCoordinates: GeographicCoordinates, riseSetAltitude: Degree? = nil)
+    ///   - atAltitude: true: calculate at the provided riseSetAltitude even for AstronomicalObject types, false: use default altitudes for known AstronomicalObject type
+    public init(celestialBody: CelestialBody, geographicCoordinates: GeographicCoordinates, riseSetAltitude: Degree? = nil, atAltitude: Bool = false)
     {
         self.geographicCoordinates = geographicCoordinates
         self.riseSetAltitude = riseSetAltitude ?? type(of: celestialBody).apparentRiseSetAltitude
@@ -145,7 +146,7 @@ public struct RiseTransitSetTimes {
                                           equCoords2: celestialBody.equatorialCoordinates,
                                           equCoords3: celestialBody.equatorialCoordinates,
                                           geoCoords: geographicCoordinates,
-                                          apparentRiseSetAltitude: AstronomicalObject.apparentRiseSetAltitude)
+                                          apparentRiseSetAltitude: atAltitude ? self.riseSetAltitude : AstronomicalObject.apparentRiseSetAltitude)
             
         } else {
             let body1: CelestialBody = celestialBodyType.init(julianDay: jd-1, highPrecision: hp)
