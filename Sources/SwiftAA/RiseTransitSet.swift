@@ -65,7 +65,7 @@ public func riseTransitSet(forJulianDay julianDay: JulianDay,
 {
     // Do NOT pass Right Ascension values in degrees, as requested by AA+. It will be transformed later.
     // See CAARiseTransitSet::CalculateTransit, line 72.
-    let details = KPCAARiseTransitSet_Calculate(julianDay.UTCtoTT().value,
+    let details = KPCAARiseTransitSet_Calculate(julianDay.value,
                                                 equCoords1.alpha.value,
                                                 equCoords1.delta.value,
                                                 equCoords2.alpha.value,
@@ -76,35 +76,9 @@ public func riseTransitSet(forJulianDay julianDay: JulianDay,
                                                 geoCoords.latitude.value,
                                                 apparentRiseSetAltitude.value)
     
-    let date = julianDay.date
-    let sexagesimalRise = Hour(details.Rise).sexagesimal
-    let sexagesimalTransit = Hour(details.Transit).sexagesimal
-    let sexagesimalSet = Hour(details.Set).sexagesimal
-    
-    let rise = JulianDay(year: date.year,
-                         month: date.month,
-                         day: date.day,
-                         hour: sexagesimalRise.radical,
-                         minute: sexagesimalRise.minute,
-                         second: sexagesimalRise.second)
-    
-    let transit = JulianDay(year: date.year,
-                            month: date.month,
-                            day: date.day,
-                            hour: sexagesimalTransit.radical,
-                            minute: sexagesimalTransit.minute,
-                            second: sexagesimalTransit.second)
-    
-    let set = JulianDay(year: date.year,
-                        month: date.month,
-                        day: date.day,
-                        hour: sexagesimalSet.radical,
-                        minute: sexagesimalSet.minute,
-                        second: sexagesimalSet.second)
-    
-    //    let rise = julianDay + Hour(details.Rise).inJulianDays
-    //    let transit = julianDay + Hour(details.Transit).inJulianDays
-    //    let set = julianDay + Hour(details.Set).inJulianDays
+    let rise = julianDay + Hour(details.Rise).inJulianDays
+    let transit = julianDay + Hour(details.Transit).inJulianDays
+    let set = julianDay + Hour(details.Set).inJulianDays
     
     return RiseTransitSetTimesDetails(isRiseValid: details.isRiseValid,
                                       riseTime: rise,
