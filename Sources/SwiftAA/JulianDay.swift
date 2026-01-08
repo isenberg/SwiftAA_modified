@@ -89,8 +89,7 @@ public extension JulianDay {
     /// and they expect a year 0 and not the 0-skip of the Gregorian calendar.
     /// This intermediate use of the Gregorian calendar in general instead of Julian Day is risky and most likely slow, but changing would require a lot of work.
     var year: Int {
-        let calendar = Calendar.current
-        let dateComponents = calendar.dateComponents([.era, .year], from: date)
+        let dateComponents = Calendar.gregorianGMT.dateComponents([.era, .year], from: date)
         if let era = dateComponents.era {
             return era > 0 ? dateComponents.year! : (1 - dateComponents.year!)
 		} else {
