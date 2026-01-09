@@ -46,8 +46,19 @@ public struct JulianDay: NumericType, CustomStringConvertible {
     ///
     /// - Parameter date: The date object.
     public init(_ date: Date) {
-        let components = Calendar.gregorianGMT.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
+        let components = Calendar.gregorianGMT.dateComponents([.era, .year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
         let decimalSeconds = Double(components.second!) + Double(components.nanosecond!)/1e9
+        var aaYear: Int
+        if let era = components.era {
+            if era > 0 {
+                aaYear = components.year!
+            } else {
+                // aaplus internally uses the astronomical year count with year 0 which equals to ear 0 year 1 in the Gregorian calendar
+                aaYear = 1 - components.year!
+            }
+        } else {
+            aaYear = components.year!
+        }
         self.init(year: components.year!, month: components.month!, day: components.day!, hour: components.hour!, minute: components.minute!, second: decimalSeconds)
     }
     
