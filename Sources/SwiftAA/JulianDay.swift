@@ -96,16 +96,13 @@ public extension JulianDay {
     /// Returns the astronomical year count of this Julian Day value. The year before 1 is returned as 0, the year before 0 returned as -1.
     /// This astronomical  counting differs from the Gregorian year where the year before year 1 is 1BC.
     /// The reason to offer this separate attribute is the difficulty of extracting the year before 1 from a Swift Date object
+    /// and before the year equivalent to JulianDay 0, Swift Date always returns era 0 year 4712
     /// and many SwiftAA functions use an intermediate conversion from a JulianDay to a Gregorian year, and will fail when used on a Swift Date object for years before 1
     /// and they expect a year 0 and not the 0-skip of the Gregorian calendar.
     /// This intermediate use of the Gregorian calendar in general instead of Julian Day is risky and most likely slow, but changing would require a lot of work.
     var year: Int {
-        let dateComponents = Calendar.gregorianGMT.dateComponents([.era, .year], from: date)
-        if let era = dateComponents.era {
-            return era > 0 ? dateComponents.year! : (1 - dateComponents.year!)
-		} else {
-            return dateComponents.year!
-        }
+        let aaDate = KPCAADate_CreateWithJulianDay(value, true)
+        return KPCAADate_GetYear(aaDate)
     }
 
     /// Returns the so-called Modified Julian Day corresponding to the Julian Day value.
