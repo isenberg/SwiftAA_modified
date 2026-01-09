@@ -102,7 +102,9 @@ public extension JulianDay {
     /// This intermediate use of the Gregorian calendar in general instead of Julian Day is risky and most likely slow, but changing would require a lot of work.
     var year: Int {
         let aaDate = KPCAADate_CreateWithJulianDay(value, true)
-        return KPCAADate_GetYear(aaDate)
+        let aaYear = KPCAADate_GetYear(aaDate)
+        KPCAADate_Destroy(aaDate)
+        return aaYear
     }
 
     /// Returns the so-called Modified Julian Day corresponding to the Julian Day value.
